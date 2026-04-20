@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - School Accounting</title>
+    <!-- External CSS from /css folder -->
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" href="/css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Section -->
+        <div class="header">
+            <h2>School Accounting System</h2>
+            <div class="user-info">
+                <span>Logged in as: <strong th:text="${#authentication.name}">User</strong></span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Card -->
+            <div class="welcome-card">
+                <h3>Welcome back!</h3>
+                <p>You have successfully logged into the School Accounting System.</p>
+            </div>
+
+            <!-- Navigation Section -->
+            <div class="nav-section">
+                <h3>Navigation</h3>
+                <div class="nav-links">
+                    <div class="nav-item" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                        <a href="/students/add">➕ Add Student</a>
+                        <span class="badge owner">Owner only</span>
+                    </div>
+                    
+                    <div class="nav-item" th:if="${#authorization.expression('hasAnyRole(''OWNER'', ''ACCOUNTANT'')')}">
+                        <a href="/payments/record">💰 Record Payment</a>
+                        <span class="badge accountant">Owner + Accountant</span>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <a href="/reports">📊 Reports</a>
+                        <span class="badge all">All roles</span>
+                    </div>
+                    
+                    <div class="nav-item" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                        <a href="/audit-logs">📜 Audit Logs</a>
+                        <span class="badge owner">Owner only</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Role Information -->
+            <div class="role-info" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                <p>🔐 You have <strong>Owner</strong> privileges - full access to all features.</p>
+            </div>
+            <div class="role-info accountant" th:if="${#authorization.expression('hasRole(''ACCOUNTANT'') and not hasRole(''OWNER'')')}">
+                <p>📝 You have <strong>Accountant</strong> privileges - can record payments and view reports.</p>
+            </div>
+            <div class="role-info user" th:if="${#authorization.expression('!hasRole(''OWNER'') and !hasRole(''ACCOUNTANT'')')}">
+                <p>👁️ You have <strong>Viewer</strong> privileges - can only view reports.</p>
+            </div>
+
+            <!-- Logout Button -->
+            <form method="post" action="/logout" class="logout-form">
+                <button type="submit" class="logout-btn">🚪 Logout</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
