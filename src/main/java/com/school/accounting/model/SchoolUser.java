@@ -14,11 +14,13 @@ public class SchoolUser{
     @Id
     private String username;
     
+    @Column(name = "password")
     private String password;
     
     @Column(name = "full_name")
     private String fullName;
     
+    @Column(name = "role")
     private String role;
     
     @Column(name = "created_at")
