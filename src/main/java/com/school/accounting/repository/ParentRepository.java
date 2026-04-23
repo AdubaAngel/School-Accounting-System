@@ -1,5 +1,11 @@
 package com.school.accounting.repository;
 
-public class ParentRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.school.accounting.model.Parent;
+
+@Repository
+public interface  ParentRepository extends JpaRepository<Parent, Long>{
     
 }
