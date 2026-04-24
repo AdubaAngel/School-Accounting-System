@@ -76,12 +76,14 @@ body {
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 2px solid #e0e0e0;
+    font-size: 20px;
 }
 
 .nav-section h4 {
     color: #555;
-    margin-bottom: 10px;
-    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    font-size: 16px;
 }
 
 .nav-links {
@@ -110,8 +112,10 @@ body {
     color: #2c3e50;
     font-weight: 500;
     flex: 1;
+    font-size: 15px;
 }
 
+/* Badge Styles */
 .badge {
     padding: 4px 10px;
     border-radius: 20px;
@@ -162,6 +166,7 @@ body {
     text-decoration: none;
     color: #2c3e50;
     font-weight: 500;
+    flex: 1;
 }
 
 /* Role Information */
@@ -170,6 +175,7 @@ body {
     padding: 15px 20px;
     border-radius: 8px;
     border-left: 4px solid;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .role-info:first-of-type {
@@ -186,6 +192,7 @@ body {
 
 .role-info p {
     margin: 0;
+    font-size: 14px;
 }
 
 /* Logout Form */
@@ -203,6 +210,7 @@ body {
     font-size: 16px;
     font-weight: 600;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 .logout-btn:hover {
@@ -213,10 +221,19 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .dashboard-container {
+        padding: 15px;
+    }
+    
     .header {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+        padding: 15px;
+    }
+    
+    .header h2 {
+        font-size: 20px;
     }
     
     .grade-grid {
@@ -226,5 +243,71 @@ body {
     .nav-item {
         flex-direction: column;
         align-items: flex-start;
+        gap: 8px;
     }
+    
+    .nav-item a {
+        width: 100%;
+    }
+    
+    .badge {
+        align-self: flex-start;
+    }
+    
+    .nav-section {
+        padding: 20px;
+    }
+    
+    .welcome-card {
+        padding: 20px;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-card, .nav-section, .role-info {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
 }

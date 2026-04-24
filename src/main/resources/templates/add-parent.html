@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Parent - School Accounting</title>
+    <link rel="stylesheet" th:href="@{/css/parents.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add New Parent</h2>
+        
+        <form th:action="@{/parents/add}" th:object="${parent}" method="post">
+            <div class="form-group">
+                <label for="name" class="required">Parent Name</label>
+                <input type="text" 
+                       id="name" 
+                       th:field="*{name}" 
+                       placeholder="Enter parent's full name" 
+                       required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="required">Email Address</label>
+                <input type="email" 
+                       id="email" 
+                       th:field="*{email}" 
+                       placeholder="parent@example.com" 
+                       required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" 
+                       id="phone" 
+                       th:field="*{phone}" 
+                       placeholder="+1 234 567 8900"/>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit">💾 Save Parent</button>
+            </div>
+        </form>
+        
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

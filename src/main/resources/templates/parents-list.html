@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parents List - School Accounting</title>
+    <link rel="stylesheet" th:href="@{/css/parents.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h2>All Parents</h2>
+            <p>View and manage parent/guardian information</p>
+        </div>
+        
+        <!-- Stats Bar -->
+        <div class="stats-bar" th:unless="${parents.empty}">
+            <div class="total-count">
+                <span th:text="${parents.size()}">0</span> Total Parents
+            </div>
+            <a href="/parents/add" class="add-quick-link">➕ Add New Parent</a>
+        </div>
+        
+        <!-- Parents Table -->
+        <table class="parent-table" th:unless="${parents.empty}">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th th:if="${#authorization.expression('hasRole(''OWNER'')')}">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="parent : ${parents}">
+                    <td th:text="${parent.id}">1</td>
+                    <td th:text="${parent.name}">John Doe</td>
+                    <td th:text="${parent.email}">john@example.com</td>
+                    <td th:text="${parent.phone}">+1234567890</td>
+                    <td th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                        <div class="action-buttons">
+                            <a th:href="@{/parents/edit/{id}(id=${parent.id})}" class="edit-btn">✏️ Edit</a>
+                            <a th:href="@{/parents/delete/{id}(id=${parent.id})}" 
+                               class="delete-btn" 
+                               onclick="return confirm('Are you sure you want to delete this parent?')">🗑️ Delete</a>
+                            <a th:href="@{/parents/view/{id}(id=${parent.id})}" class="view-btn">👁️ View</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Empty State -->
+        <div th:if="${parents.empty}" class="empty-state">
+            <p>📭 No parents found in the system.</p>
+            <p>Click the button below to add your first parent.</p>
+            <a href="/parents/add">➕ Add New Parent</a>
+        </div>
+        
+        <!-- Back to Dashboard Link -->
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

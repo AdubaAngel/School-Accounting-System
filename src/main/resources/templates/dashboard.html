@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - School Accounting</title>
+    <title>Dashboard - School Accounting System</title>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 </head>
@@ -11,7 +11,7 @@
     <div class="dashboard-container">
         <!-- Header Section -->
         <div class="header">
-            <h2>School Accounting System</h2>
+            <h2>🏫 School Accounting System</h2>
             <div class="user-info">
                 <span>Logged in as: <strong th:text="${#authentication.name}">User</strong></span>
             </div>
@@ -21,8 +21,23 @@
         <div class="main-content">
             <!-- Welcome Card -->
             <div class="welcome-card">
-                <h3>Welcome back!</h3>
-                <p>You have successfully logged into the School Accounting System.</p>
+                <h3>Welcome back! 👋</h3>
+                <p>You have successfully logged into the School Accounting System. Use the navigation below to manage students, parents, and financial records.</p>
+            </div>
+
+            <!-- Parent Management Section -->
+            <div class="nav-section">
+                <h3>👨‍👩‍👧 Parent Management</h3>
+                <div class="nav-links">
+                    <div class="nav-item" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                        <a href="/parents/add">➕ Add New Parent</a>
+                        <span class="badge owner">Owner only</span>
+                    </div>
+                    <div class="nav-item" th:if="${#authorization.expression('hasAnyRole(''OWNER'', ''ACCOUNTANT'')')}">
+                        <a href="/parents/list">📋 View All Parents</a>
+                        <span class="badge accountant">Owner + Accountant</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Student Management Section -->
@@ -35,54 +50,78 @@
                     </div>
                 </div>
                 
-                <h4>View Students by Class:</h4>
+                <h4>📖 View Students by Class:</h4>
                 <div class="grade-grid">
                     <div class="grade-item">
                         <a href="/students/class/PRESCHOOL">🎨 Preschool</a>
-                        <span class="badge all">All</span>
+                        <span class="badge all">All roles</span>
                     </div>
                     <div class="grade-item">
-                        <a href="/students/class/KG">🍎 KG</a>
-                        <span class="badge all">All</span>
+                        <a href="/students/class/KG">🍎 Kindergarten (KG)</a>
+                        <span class="badge all">All roles</span>
                     </div>
                     <div class="grade-item">
                         <a href="/students/class/GRADE_1">📖 Grade 1</a>
-                        <span class="badge all">All</span>
+                        <span class="badge all">All roles</span>
                     </div>
                     <div class="grade-item">
                         <a href="/students/class/GRADE_2">✏️ Grade 2</a>
-                        <span class="badge all">All</span>
+                        <span class="badge all">All roles</span>
                     </div>
                     <div class="grade-item">
                         <a href="/students/class/GRADE_3">🔢 Grade 3</a>
-                        <span class="badge all">All</span>
+                        <span class="badge all">All roles</span>
                     </div>
                     <div class="grade-item">
                         <a href="/students/class/GRADE_4">🌍 Grade 4</a>
-                        <span class="badge all">All</span>
+                        <span class="badge all">All roles</span>
                     </div>
                     <div class="grade-item">
                         <a href="/students/class/GRADE_5">⚡ Grade 5</a>
-                        <span class="badge all">All</span>
+                        <span class="badge all">All roles</span>
                     </div>
                     <div class="grade-item">
                         <a href="/students/class/GRADE_6">🎯 Grade 6</a>
-                        <span class="badge all">All</span>
+                        <span class="badge all">All roles</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_7">🚀 Grade 7</a>
+                        <span class="badge all">All roles</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_8">💡 Grade 8</a>
+                        <span class="badge all">All roles</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_9">🎓 Grade 9</a>
+                        <span class="badge all">All roles</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_10">🏆 Grade 10</a>
+                        <span class="badge all">All roles</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_11">📚 Grade 11</a>
+                        <span class="badge all">All roles</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_12">🎯 Grade 12</a>
+                        <span class="badge all">All roles</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Other Navigation Section -->
+            <!-- Financial Management Section -->
             <div class="nav-section">
                 <h3>💰 Financial Management</h3>
                 <div class="nav-links">
                     <div class="nav-item" th:if="${#authorization.expression('hasAnyRole(''OWNER'', ''ACCOUNTANT'')')}">
-                        <a href="/payments/record">Record Payment</a>
+                        <a href="/payments/record">💰 Record Payment</a>
                         <span class="badge accountant">Owner + Accountant</span>
                     </div>
                     
                     <div class="nav-item">
-                        <a href="/reports">📊 Reports</a>
+                        <a href="/reports">📊 Financial Reports</a>
                         <span class="badge all">All roles</span>
                     </div>
                     
@@ -90,18 +129,42 @@
                         <a href="/audit-logs">📜 Audit Logs</a>
                         <span class="badge owner">Owner only</span>
                     </div>
+                    
+                    <div class="nav-item" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                        <a href="/fee-structures">💰 Fee Structures</a>
+                        <span class="badge owner">Owner only</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Role Information -->
+            <!-- Role Information Cards -->
             <div class="role-info" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
-                <p>🔐 You have <strong>Owner</strong> privileges - full access to all features.</p>
+                <p>🔐 <strong>Owner Privileges</strong> - You have full access to all features including adding students/parents, recording payments, viewing reports, and accessing audit logs.</p>
             </div>
             <div class="role-info accountant" th:if="${#authorization.expression('hasRole(''ACCOUNTANT'') and not hasRole(''OWNER'')')}">
-                <p>📝 You have <strong>Accountant</strong> privileges - can record payments and view reports.</p>
+                <p>📝 <strong>Accountant Privileges</strong> - You can record payments, view reports, and manage financial records.</p>
             </div>
             <div class="role-info user" th:if="${#authorization.expression('!hasRole(''OWNER'') and !hasRole(''ACCOUNTANT'')')}">
-                <p>👁️ You have <strong>Viewer</strong> privileges - can only view reports.</p>
+                <p>👁️ <strong>Viewer Privileges</strong> - You can only view reports and student information. Contact the owner for additional access.</p>
+            </div>
+
+            <!-- Quick Stats Section (Optional) -->
+            <div class="nav-section">
+                <h3>📈 Quick Stats</h3>
+                <div class="grade-grid">
+                    <div class="grade-item">
+                        <span>📊 Total Students</span>
+                        <strong th:text="${totalStudents != null ? totalStudents : 'N/A'}">Loading...</strong>
+                    </div>
+                    <div class="grade-item">
+                        <span>👨‍👩‍👧 Total Parents</span>
+                        <strong th:text="${totalParents != null ? totalParents : 'N/A'}">Loading...</strong>
+                    </div>
+                    <div class="grade-item">
+                        <span>💰 Monthly Revenue</span>
+                        <strong th:text="${monthlyRevenue != null ? monthlyRevenue : 'N/A'}">Loading...</strong>
+                    </div>
+                </div>
             </div>
 
             <!-- Logout Button -->

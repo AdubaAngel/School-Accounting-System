@@ -1,0 +1,282 @@
+/* Parent Pages Styles - Add these to existing parents.css */
+
+/* List View Container */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Header Section */
+.header-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.header-section h2 {
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-section h2::before {
+    content: "👨‍👩‍👧‍👦";
+    font-size: 32px;
+}
+
+.header-section p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Stats Bar */
+.stats-bar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.total-count {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.total-count span {
+    font-size: 28px;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.add-quick-link {
+    background: rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.add-quick-link:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+/* Parent Table */
+.parent-table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.parent-table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.parent-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.parent-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+}
+
+.parent-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.parent-table tbody tr:hover {
+    background: #f8f9fa;
+    transform: scale(1.01);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Table Cell Specific Styles */
+.parent-table td:first-child {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.parent-table td:nth-child(2) {
+    font-weight: 500;
+}
+
+.parent-table td:nth-child(3) {
+    color: #666;
+    font-family: monospace;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.empty-state p {
+    margin: 15px 0;
+    color: #666;
+    font-size: 16px;
+}
+
+.empty-state a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.empty-state a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Action Buttons (if needed) */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn, .delete-btn, .view-btn {
+    padding: 5px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.edit-btn {
+    background: #ffc107;
+    color: #333;
+}
+
+.edit-btn:hover {
+    background: #ffb300;
+    transform: translateY(-1px);
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
+.view-btn {
+    background: #28a745;
+    color: white;
+}
+
+.view-btn:hover {
+    background: #218838;
+    transform: translateY(-1px);
+}
+
+/* Back Link */
+.back-link {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 20px;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+}
+
+.back-link:hover {
+    background: #f0f0f0;
+    color: #764ba2;
+    transform: translateX(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header-section h2 {
+        font-size: 24px;
+    }
+    
+    .stats-bar {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .parent-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .parent-table th,
+    .parent-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .edit-btn, .delete-btn, .view-btn {
+        text-align: center;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .stats-bar, .back-link, .action-buttons {
+        display: none;
+    }
+    
+    .parent-table {
+        box-shadow: none;
+    }
+    
+    .parent-table thead {
+        background: #f0f0f0;
+        color: black;
+    }
+}
