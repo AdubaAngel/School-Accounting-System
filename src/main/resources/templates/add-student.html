@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student - School Accounting</title>
+    <link rel="stylesheet" th:href="@{/css/students.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add New Student</h2>
+        
+        <form th:action="@{/students/add}" th:object="${student}" method="post">
+            <div class="form-group">
+                <label>Student Name:</label>
+                <input type="text" th:field="*{fullName}" placeholder="Enter student full name" required/>
+            </div>
+            
+            <div class="form-group">
+                <label>Class Level:</label>
+                <select th:field="*{classLevel}" title="Class Level">
+                    <option th:each="level : ${classLevels}" th:value="${level}" th:text="${level}"></option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Parent:</label>
+                <select name="parentId" title="Parent">
+                    <option th:each="parent : ${parents}" th:value="${parent.id}" th:text="${parent.name}"></option>
+                </select>
+            </div>
+            
+            <button type="submit">💾 Save Student</button>
+        </form>
+        
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Accounting · Secure Login</title>
-    <!-- External CSS from /css folder -->
-    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
-    <!-- Google Fonts (kept here for performance, can also be moved to CSS if preferred) -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="login-container">
-        <!-- header / branding area -->
         <div class="brand-header">
             <h1>
                 <span>📚</span> School Accounting
@@ -20,9 +17,7 @@
             <div class="school-badge">secure portal</div>
         </div>
 
-        <!-- form wrapper -->
         <div class="form-wrapper">
-            <!-- login form: action="/login" matches backend -->
             <form method="post" action="/login" class="login-form">
                 <div class="input-group">
                     <label for="username">Username</label>
@@ -48,7 +43,6 @@
 
                 <button type="submit" class="login-btn">Sign in →</button>
 
-                <!-- additional subtle options -->
                 <div class="form-footer">
                     <a href="#" class="helper-link">Forgot password?</a>
                     <span class="sep">•</span>
@@ -56,7 +50,6 @@
                 </div>
             </form>
 
-            <!-- message blocks: error / logout (Thymeleaf conditional) -->
             <div th:if="${param.error}" class="alert-message error" role="alert">
                 <span class="alert-icon">⚠️</span>
                 <span th:text="'Invalid username or password'">Invalid username or password</span>

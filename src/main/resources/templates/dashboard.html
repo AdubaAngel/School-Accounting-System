@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - School Accounting</title>
-    <!-- External CSS from /css folder -->
-    <link rel="stylesheet" th:href="@{/css/dashboard.css}" href="/css/dashboard.css">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="dashboard-container">
@@ -25,17 +25,59 @@
                 <p>You have successfully logged into the School Accounting System.</p>
             </div>
 
-            <!-- Navigation Section -->
+            <!-- Student Management Section -->
             <div class="nav-section">
-                <h3>Navigation</h3>
+                <h3>📚 Student Management</h3>
                 <div class="nav-links">
                     <div class="nav-item" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
-                        <a href="/students/add">➕ Add Student</a>
+                        <a href="/students/add">➕ Add New Student</a>
                         <span class="badge owner">Owner only</span>
                     </div>
-                    
+                </div>
+                
+                <h4>View Students by Class:</h4>
+                <div class="grade-grid">
+                    <div class="grade-item">
+                        <a href="/students/class/PRESCHOOL">🎨 Preschool</a>
+                        <span class="badge all">All</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/KG">🍎 KG</a>
+                        <span class="badge all">All</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_1">📖 Grade 1</a>
+                        <span class="badge all">All</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_2">✏️ Grade 2</a>
+                        <span class="badge all">All</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_3">🔢 Grade 3</a>
+                        <span class="badge all">All</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_4">🌍 Grade 4</a>
+                        <span class="badge all">All</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_5">⚡ Grade 5</a>
+                        <span class="badge all">All</span>
+                    </div>
+                    <div class="grade-item">
+                        <a href="/students/class/GRADE_6">🎯 Grade 6</a>
+                        <span class="badge all">All</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Navigation Section -->
+            <div class="nav-section">
+                <h3>💰 Financial Management</h3>
+                <div class="nav-links">
                     <div class="nav-item" th:if="${#authorization.expression('hasAnyRole(''OWNER'', ''ACCOUNTANT'')')}">
-                        <a href="/payments/record">💰 Record Payment</a>
+                        <a href="/payments/record">Record Payment</a>
                         <span class="badge accountant">Owner + Accountant</span>
                     </div>
                     

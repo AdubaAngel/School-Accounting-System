@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students by Class - School Accounting</title>
+    <link rel="stylesheet" th:href="@{/css/students.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <h2>Students in <span th:text="${classLevel}" class="class-badge"></span></h2>
+            <p>Viewing all students enrolled in this class level</p>
+        </div>
+        
+        <table class="student-table">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Class Level</th>
+                    <th>Parent Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.fullName}"></td>
+                    <td th:text="${student.classLevel}"></td>
+                    <td th:text="${student.parent.name}"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div th:if="${students.empty}" class="no-data">
+            <p>📭 No students found in this class.</p>
+            <p th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                <a href="/students/add">Click here to add a new student</a>
+            </p>
+        </div>
+        
+        <div th:unless="${students.empty}" class="stats">
+            📊 Total students: <strong th:text="${students.size()}"></strong>
+        </div>
+        
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+</body>
+</html>
