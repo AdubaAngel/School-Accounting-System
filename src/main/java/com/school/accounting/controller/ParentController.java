@@ -1,5 +1,6 @@
 package com.school.accounting.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +19,14 @@ public class ParentController {
     }
     
     @GetMapping("parents/add")
+    @PreAuthorize("hasRole('OWNER')")
     public String showAddForm(Model model) {
         model.addAttribute("parent", new Parent());
         return "add-parent";
     }
 
      @PostMapping("/parents/add")
+     @PreAuthorize("hasRole('OWNER')")
     public String saveParent(@ModelAttribute Parent parent) {
         // Save parent
         parentRepository.save(parent);
@@ -31,6 +34,7 @@ public class ParentController {
     }
 
     @GetMapping("/parents/list")
+    @PreAuthorize("hasAnyRole('OWNER', 'ACCOUNTANT', 'AUDITOR')")
     public String listParents(Model model) {
         model.addAttribute("parents", parentRepository.findAll());
         return "parents-list";
