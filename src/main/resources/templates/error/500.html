@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Error - School Accounting</title>
+    <link rel="stylesheet" th:href="@{/css/error.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-card">
+            <div class="error-icon">⚠️</div>
+            <h2>Internal Server Error</h2>
+            <div class="error-code">HTTP 500</div>
+            <p>Something went wrong on our end. Please try again later.</p>
+            <div class="button-group">
+                <a href="/dashboard" class="home-button">← Back to Dashboard</a>
+                <a href="javascript:location.reload()" class="retry-button">⟳ Try Again</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
