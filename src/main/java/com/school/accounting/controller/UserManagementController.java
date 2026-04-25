@@ -41,6 +41,7 @@ public class UserManagementController {
         user.setPassword(hashedPassword);
         user.setCreatedAt(LocalDateTime.now());
         user.setIsActive(true);
+        user.setPasswordChangedAt(LocalDateTime.now()); 
         userRepository.save(user);
         return "redirect:/users/list";
     }

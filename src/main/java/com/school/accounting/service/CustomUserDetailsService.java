@@ -1,5 +1,7 @@
 package com.school.accounting.service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -35,6 +37,20 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (!user.getIsActive()) {
             System.out.println("User is INACTIVE - denying login");
             throw new UsernameNotFoundException("User account is deactivated: " + username);
+        }
+
+        // Check if password needs to be changed (5-day urgency)
+        if (user.getPasswordChangedAt() != null) {
+            long daysSince = ChronoUnit.DAYS.between(user.getPasswordChangedAt(), LocalDateTime.now());
+            System.out.println("Password age: " + daysSince + " days");
+            
+            if (daysSince >= 5) {
+                System.out.println("Password is " + daysSince + " days old - forcing password change");
+                // Instead of throwing exception, you can add a flag to redirect
+                // For now, just log it. Later you can implement a custom UserDetails with "needsPasswordChange" flag
+            }
+        } else {
+            System.out.println("No password_changed_at date - consider setting it");
         }
 
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole());

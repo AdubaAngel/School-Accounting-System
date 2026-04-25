@@ -33,6 +33,9 @@ public class SchoolUser {
 
     @Column(name = "is_active")
     private Boolean isActive = true;
+
+    @Column(name = "password_changed_at")
+    private LocalDateTime passwordChangedAt;
     
     // Getters and setters
     public Long getId() { return id; }
@@ -55,4 +58,7 @@ public class SchoolUser {
     
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public LocalDateTime getPasswordChangedAt() { return passwordChangedAt; }
+    public void setPasswordChangedAt(LocalDateTime passwordChangedAt) { this.passwordChangedAt = passwordChangedAt; }
 }
