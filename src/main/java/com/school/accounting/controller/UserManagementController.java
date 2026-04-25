@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.school.accounting.model.SchoolUser;
 import com.school.accounting.repository.SchoolUserRepository;
@@ -90,5 +91,38 @@ public class UserManagementController {
         userRepository.save(user);
         return "redirect:/users/list";
     }
+    
+    @GetMapping("/users/edit/{id}")
+@PreAuthorize("hasRole('OWNER')")
+public String showEditForm(@PathVariable Long id, Model model) {
+    SchoolUser user = userRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("User not found"));
+    
+    model.addAttribute("user", user);
+    model.addAttribute("roles", List.of("ACCOUNTANT", "AUDITOR"));
+    return "edit-user";
+}
 
+    @PostMapping("/users/update/{id}")
+    @PreAuthorize("hasRole('OWNER')")
+    public String updateUser(@PathVariable Long id, 
+                            @ModelAttribute SchoolUser updatedUser,
+                            @RequestParam String role) {
+        SchoolUser existing = userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+        
+        // Don't allow role change for OWNER
+        if (existing.getRole().equals("OWNER") && !role.equals("OWNER")) {
+            throw new RuntimeException("Cannot change OWNER role");
+        }
+        
+        // Update fields
+        existing.setFullName(updatedUser.getFullName());
+        existing.setRole(role);
+        // Username cannot be changed (primary key)
+        // Password change handled separately
+        
+        userRepository.save(existing);
+        return "redirect:/users/list";
+    }
 }
