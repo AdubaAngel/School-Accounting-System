@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,27 +36,12 @@ public class UserManagementController {
     @PostMapping("/users/add")
     @PreAuthorize("hasRole('OWNER')")
     public String saveUser(@ModelAttribute SchoolUser user) {
-        System.out.println("=== SAVING USER ===");
-        System.out.println("Username: '" + user.getUsername() + "'");
-        System.out.println("FullName: '" + user.getFullName() + "'");
-        System.out.println("Role: '" + user.getRole() + "'");
-        System.out.println("Password (before set): '" + user.getPassword() + "'");
-        
-        user.setPassword("temp123");
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String hashedPassword = encoder.encode("MarvAngel540");
+        user.setPassword(hashedPassword);
         user.setCreatedAt(LocalDateTime.now());
-        
-        System.out.println("Password (after set): '" + user.getPassword() + "'");
-        System.out.println("CreatedAt: " + user.getCreatedAt());
-        
-        try {
-            userRepository.save(user);
-            System.out.println("User saved successfully!");
-        } catch (Exception e) {
-            System.out.println("ERROR SAVING USER: " + e.getMessage());
-            e.printStackTrace();
-            throw e;
-        }
-        
+        user.setIsActive(true);
+        userRepository.save(user);
         return "redirect:/users/list";
     }
 

@@ -30,7 +30,7 @@
                 <h3>👥 User Management</h3>
                 <div class="nav-links">
                     <div class="nav-item">
-                        <a href="/users/add">👤 Add New Staff User</a>
+                        <a href="/users/add">➕ Add New Staff User</a>
                         <span class="badge owner">Owner only</span>
                     </div>
                     <div class="nav-item">
@@ -102,6 +102,17 @@
                 </div>
             </div>
 
+            <!-- Fee Structure Section (Owner Only) -->
+            <div class="nav-section" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                <h3>💰 Fee Management</h3>
+                <div class="nav-links">
+                    <div class="nav-item">
+                        <a href="/fee-structures">📋 Fee Structures</a>
+                        <span class="badge owner">Owner only</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Financial Management Section -->
             <div class="nav-section">
                 <h3>💰 Financial Management</h3>
@@ -120,23 +131,18 @@
                         <a href="/audit-logs">📜 Audit Logs</a>
                         <span class="badge owner">Owner only</span>
                     </div>
-                    
-                    <div class="nav-item" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
-                        <a href="/fee-structures">💰 Fee Structures</a>
-                        <span class="badge owner">Owner only</span>
-                    </div>
                 </div>
             </div>
 
             <!-- Role Information Cards -->
             <div class="role-info" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
-                <p>🔐 <strong>Owner Privileges</strong> - You have full access to all features including user management, adding students/parents, recording payments, viewing reports, and accessing audit logs.</p>
+                <p>🔐 <strong>Owner Privileges</strong> - You have full access to all features including user management, fee structures, adding students/parents, recording payments, viewing reports, and accessing audit logs.</p>
             </div>
             <div class="role-info accountant" th:if="${#authorization.expression('hasRole(''ACCOUNTANT'') and not hasRole(''OWNER'')')}">
-                <p>📝 <strong>Accountant Privileges</strong> - You can record payments, view reports, and manage financial records.</p>
+                <p>📝 <strong>Accountant Privileges</strong> - You can record payments, view reports, view parents and students.</p>
             </div>
             <div class="role-info user" th:if="${#authorization.expression('!hasRole(''OWNER'') and !hasRole(''ACCOUNTANT'')')}">
-                <p>👁️ <strong>Auditor Privileges</strong> - You can only view reports and audit financial records.</p>
+                <p>👁️ <strong>Auditor Privileges</strong> - You can view reports, parents, and students.</p>
             </div>
 
             <!-- Quick Stats Section -->
@@ -163,7 +169,7 @@
             </div>
 
             <!-- Logout Button -->
-            <form method="post" action="/logout" class="logout-form">
+            <form th:action="@{/logout}" method="post" class="logout-form">
                 <button type="submit" class="logout-btn">🚪 Logout</button>
             </form>
         </div>

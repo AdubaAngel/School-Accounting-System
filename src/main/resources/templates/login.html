@@ -18,7 +18,7 @@
         </div>
 
         <div class="form-wrapper">
-            <form method="post" action="/login" class="login-form">
+            <form th:action="@{/login}" method="post" class="login-form">
                 <div class="input-group">
                     <label for="username">Username</label>
                     <input type="text" 
@@ -52,12 +52,12 @@
 
             <div th:if="${param.error}" class="alert-message error" role="alert">
                 <span class="alert-icon">⚠️</span>
-                <span th:text="'Invalid username or password'">Invalid username or password</span>
+                <span>Invalid username or password</span>
             </div>
             
             <div th:if="${param.logout}" class="alert-message success" role="alert">
                 <span class="alert-icon">✓</span>
-                <span th:text="'You have been logged out'">You have been logged out</span>
+                <span>You have been logged out</span>
             </div>
         </div>
     </div>
