@@ -25,6 +25,21 @@
                 <p>You have successfully logged into the School Accounting System. Use the navigation below to manage students, parents, and financial records.</p>
             </div>
 
+            <!-- User Management Section (Owner Only) -->
+            <div class="nav-section" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                <h3>👥 User Management</h3>
+                <div class="nav-links">
+                    <div class="nav-item">
+                        <a href="/users/add">👤 Add New Staff User</a>
+                        <span class="badge owner">Owner only</span>
+                    </div>
+                    <div class="nav-item">
+                        <a href="/users/list">📋 View All Staff Users</a>
+                        <span class="badge owner">Owner only</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Parent Management Section -->
             <div class="nav-section">
                 <h3>👨‍👩‍👧 Parent Management</h3>
@@ -115,16 +130,16 @@
 
             <!-- Role Information Cards -->
             <div class="role-info" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
-                <p>🔐 <strong>Owner Privileges</strong> - You have full access to all features including adding students/parents, recording payments, viewing reports, and accessing audit logs.</p>
+                <p>🔐 <strong>Owner Privileges</strong> - You have full access to all features including user management, adding students/parents, recording payments, viewing reports, and accessing audit logs.</p>
             </div>
             <div class="role-info accountant" th:if="${#authorization.expression('hasRole(''ACCOUNTANT'') and not hasRole(''OWNER'')')}">
                 <p>📝 <strong>Accountant Privileges</strong> - You can record payments, view reports, and manage financial records.</p>
             </div>
             <div class="role-info user" th:if="${#authorization.expression('!hasRole(''OWNER'') and !hasRole(''ACCOUNTANT'')')}">
-                <p>👁️ <strong>Viewer Privileges</strong> - You can only view reports and student information. Contact the owner for additional access.</p>
+                <p>👁️ <strong>Auditor Privileges</strong> - You can only view reports and audit financial records.</p>
             </div>
 
-            <!-- Quick Stats Section (Optional) -->
+            <!-- Quick Stats Section -->
             <div class="nav-section">
                 <h3>📈 Quick Stats</h3>
                 <div class="grade-grid">
@@ -139,6 +154,10 @@
                     <div class="grade-item">
                         <span>💰 Monthly Revenue</span>
                         <strong th:text="${monthlyRevenue != null ? monthlyRevenue : 'N/A'}">Loading...</strong>
+                    </div>
+                    <div class="grade-item">
+                        <span>👥 Staff Users</span>
+                        <strong th:text="${totalUsers != null ? totalUsers : 'N/A'}">Loading...</strong>
                     </div>
                 </div>
             </div>

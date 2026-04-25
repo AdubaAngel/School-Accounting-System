@@ -33,6 +33,9 @@ public UserDetails loadUserByUsername(String username) throws UsernameNotFoundEx
     }
     
     SchoolUser schoolUser = userOptional.get();
+    if (!schoolUser.getIsActive()) {
+    throw new UsernameNotFoundException("User account is deactivated: " + username);
+}
     System.out.println("RESULT: User FOUND");
     System.out.println("  Username: " + schoolUser.getUsername());
     System.out.println("  Password from DB: '" + schoolUser.getPassword() + "'");

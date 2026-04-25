@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.school.accounting.model.SchoolUser;
 
 @Repository
-public interface SchoolUserRepository extends JpaRepository<SchoolUser, String> {  
-    Optional<SchoolUser> findByUsername(String username);  
+public interface SchoolUserRepository extends JpaRepository<SchoolUser, Long> {
+    Optional<SchoolUser> findByUsername(String username);
 }

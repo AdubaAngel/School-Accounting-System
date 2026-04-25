@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Staff User - School Accounting</title>
+    <link rel="stylesheet" th:href="@{/css/users.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add New Staff User</h2>
+        
+        <form th:action="@{/users/add}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label for="username" class="required">Username</label>
+                <input type="text" 
+                       id="username" 
+                       th:field="*{username}" 
+                       placeholder="Enter username (e.g., johndoe)" 
+                       required/>
+                <small style="color: #666; font-size: 12px;">Used for login (unique identifier)</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="fullName" class="required">Full Name</label>
+                <input type="text" 
+                       id="fullName" 
+                       th:field="*{fullName}" 
+                       placeholder="Enter staff member's full name" 
+                       required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="role" class="required">Role</label>
+                <select id="role" th:field="*{role}" required>
+                    <option value="">-- Select Role --</option>
+                    <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
+                </select>
+                <small style="color: #666; font-size: 12px;">
+                    ACCOUNTANT: Can record payments and view reports | 
+                    AUDITOR: Can only view and audit financial records
+                </small>
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="required">Temporary Password</label>
+                <input type="password" 
+                    id="password" 
+                    th:field="*{password}"
+                    placeholder="Enter temporary password" 
+                    required/>
+                <small style="color: #666; font-size: 12px;">User will be prompted to change password on first login</small>
+</div>
+            
+            <div class="button-group">
+                <button type="submit">👤 Create Staff User</button>
+            </div>
+        </form>
+        
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

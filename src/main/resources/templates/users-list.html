@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Users - School Accounting</title>
+    <link rel="stylesheet" th:href="@{/css/user-management.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <h2>Staff Users</h2>
+            <p>Manage system users and their access permissions</p>
+        </div>
+        
+        <div class="stats-bar" th:unless="${users.empty}">
+            <div class="total-count">
+                <span th:text="${users.size()}">0</span> Total Staff Users
+            </div>
+            <a href="/users/add" class="add-quick-link">+ Add New Staff User</a>
+        </div>
+        
+        <table class="user-table" th:unless="${users.empty}">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.username}">--</td>
+                    <td th:text="${user.fullName}">--</td>
+                    <td>
+                        <span class="role-badge" 
+                              th:classappend="${user.role == 'ACCOUNTANT' ? 'accountant' : 'auditor'}"
+                              th:text="${user.role}">ACCOUNTANT</span>
+                    </td>
+                    <td>
+                        <span th:if="${user.isActive}" class="status-active">● Active</span>
+                        <span th:unless="${user.isActive}" class="status-inactive">● Inactive</span>
+                    </td>
+                    <td class="date-cell" th:text="${user.createdAt}">--</td>
+                    <td>
+                        <div class="action-buttons">
+                            <a th:if="${user.isActive and user.role != 'OWNER'}" 
+                               th:href="@{/users/deactivate/{id}(id=${user.id})}" 
+                               class="deactivate-btn" 
+                               onclick="return confirm('Deactivate this user? They will not be able to log in.')">Deactivate</a>
+                            
+                            <a th:if="${!user.isActive}" 
+                               th:href="@{/users/reactivate/{id}(id=${user.id})}" 
+                               class="reactivate-btn" 
+                               onclick="return confirm('Reactivate this user? They will be able to log in again.')">Reactivate</a>
+                            
+                            <a th:href="@{/users/edit/{id}(id=${user.id})}" class="edit-btn">Edit</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div th:if="${users.empty}" class="empty-state">
+            <p>No staff users found.</p>
+            <a href="/users/add">+ Add New Staff User</a>
+        </div>
+        
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+</body>
+</html>
