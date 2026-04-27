@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Parent - School Accounting</title>
+    <link rel="stylesheet" th:href="@{/css/parents.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Edit Parent</h2>
+        
+        <form th:action="@{/parents/update/{id}(id=${parent.id})}" 
+              th:object="${parent}" 
+              method="post">
+            
+            <div class="form-group">
+                <label for="name" class="required">Parent Name</label>
+                <input type="text" 
+                       id="name" 
+                       th:field="*{name}" 
+                       required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="required">Email Address</label>
+                <input type="email" 
+                       id="email" 
+                       th:field="*{email}" 
+                       required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" 
+                       id="phone" 
+                       th:field="*{phone}"/>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit">💾 Save Changes</button>
+                <a href="/parents/list" class="cancel-btn">Cancel</a>
+            </div>
+        </form>
+        
+        <a href="/parents/list" class="back-link">← Back to Parents List</a>
+    </div>
+</body>
+</html>

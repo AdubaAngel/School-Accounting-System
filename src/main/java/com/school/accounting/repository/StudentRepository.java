@@ -10,4 +10,5 @@ import com.school.accounting.model.Student;
 @Repository
 public interface  StudentRepository extends JpaRepository<Student, Long>{
     List<Student>findByClassLevel(String classLevel);
+    List<Student> findByParentId(Long parentId);
 }

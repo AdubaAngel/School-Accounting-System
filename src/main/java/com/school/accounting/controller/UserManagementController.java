@@ -80,8 +80,8 @@ public class UserManagementController {
     }
     
     @GetMapping("/users/edit/{id}")
-@PreAuthorize("hasRole('OWNER')")
-public String showEditForm(@PathVariable Long id, Model model) {
+    @PreAuthorize("hasRole('OWNER')")
+    public String showEditForm(@PathVariable Long id, Model model) {
     SchoolUser user = userRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("User not found"));
     

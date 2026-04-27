@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student - School Accounting</title>
+    <link rel="stylesheet" th:href="@{/css/students.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Edit Student</h2>
+        
+        <form th:action="@{/students/update/{id}(id=${student.id})}" 
+              th:object="${student}" 
+              method="post">
+            
+            <div class="form-group">
+                <label for="fullName">Student Name</label>
+                <input type="text" 
+                       id="fullName" 
+                       th:field="*{fullName}" 
+                       required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="classLevel">Class Level</label>
+                <select id="classLevel" th:field="*{classLevel}" required>
+                    <option th:each="level : ${classLevels}" 
+                            th:value="${level}" 
+                            th:text="${level}"
+                            th:selected="${student.classLevel == level}">
+                    </option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="parentId">Parent</label>
+                <select id="parentId" name="parentId" required>
+                    <option th:each="parent : ${parents}" 
+                            th:value="${parent.id}" 
+                            th:text="${parent.name}"
+                            th:selected="${student.parent.id == parent.id}">
+                    </option>
+                </select>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit">💾 Save Changes</button>
+                <a th:href="@{/students/class/{classLevel}(classLevel=${student.classLevel})}" class="cancel-btn">Cancel</a>
+            </div>
+        </form>
+        
+        <a th:href="@{/students/class/{classLevel}(classLevel=${student.classLevel})}" class="back-link">← Back to Class</a>
+    </div>
+</body>
+</html>

@@ -14,23 +14,38 @@
             <p>Viewing all students enrolled in this class level</p>
         </div>
         
-        <table class="student-table">
+        <!-- Alert Messages -->
+        <div th:if="${successMessage}" class="alert-success" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="alert-error" th:text="${errorMessage}"></div>
+        
+        <!-- Students Table -->
+        <table class="student-table" th:unless="${students.empty}">
             <thead>
                 <tr>
                     <th>Student Name</th>
                     <th>Class Level</th>
                     <th>Parent Name</th>
+                    <th th:if="${#authorization.expression('hasRole(''OWNER'')')}">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="student : ${students}">
-                    <td th:text="${student.fullName}"></td>
-                    <td th:text="${student.classLevel}"></td>
-                    <td th:text="${student.parent.name}"></td>
+                    <td th:text="${student.fullName}">--</td>
+                    <td th:text="${student.classLevel}">--</td>
+                    <td th:text="${student.parent.name}">--</td>
+                    <td th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                        <div class="action-buttons">
+                            <a th:href="@{/students/edit/{id}(id=${student.id})}" class="edit-btn">✏️ Edit</a>
+                            <a th:href="@{/students/delete/{id}(id=${student.id})}" 
+                               class="delete-btn" 
+                               onclick="return confirm('Are you sure you want to delete this student?')">🗑️ Delete</a>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
         
+        <!-- Empty State (No Students) -->
         <div th:if="${students.empty}" class="no-data">
             <p>📭 No students found in this class.</p>
             <p th:if="${#authorization.expression('hasRole(''OWNER'')')}">
@@ -38,6 +53,7 @@
             </p>
         </div>
         
+        <!-- Stats (Only show if students exist) -->
         <div th:unless="${students.empty}" class="stats">
             📊 Total students: <strong th:text="${students.size()}"></strong>
         </div>
