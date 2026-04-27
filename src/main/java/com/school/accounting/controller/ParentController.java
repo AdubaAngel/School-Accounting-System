@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.school.accounting.model.Parent;
 import com.school.accounting.model.Student;
@@ -73,17 +74,21 @@ public class ParentController {
 
     @GetMapping("/parents/delete/{id}")
     @PreAuthorize("hasRole('OWNER')")
-    public String deleteParent(@PathVariable Long id) {
+    public String deleteParent(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         if (!parentRepository.existsById(id)) {
-            throw new RuntimeException("Parent not found");
+            redirectAttributes.addFlashAttribute("errorMessage", "Parent not found.");
+            return "redirect:/parents/list";
         }
         
         List<Student> students = studentRepository.findByParentId(id);
         if (!students.isEmpty()) {
-            throw new RuntimeException("Cannot delete parent with " + students.size() + " existing students. Transfer or delete students first.");
+            redirectAttributes.addFlashAttribute("errorMessage", 
+                "Cannot delete parent with " + students.size() + " existing student(s). Transfer or delete students first.");
+            return "redirect:/parents/list";
         }
         
         parentRepository.deleteById(id);
+        redirectAttributes.addFlashAttribute("successMessage", "Parent deleted successfully.");
         return "redirect:/parents/list";
     }
 }
