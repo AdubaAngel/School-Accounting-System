@@ -19,7 +19,7 @@
                        th:field="*{username}" 
                        placeholder="Enter username (e.g., johndoe)" 
                        required/>
-                <small style="color: #666; font-size: 12px;">Used for login (unique identifier)</small>
+                <small class="helper-text">Used for login (unique identifier)</small>
             </div>
             
             <div class="form-group">
@@ -37,7 +37,7 @@
                     <option value="">-- Select Role --</option>
                     <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
                 </select>
-                <small style="color: #666; font-size: 12px;">
+                <small class="role-description">
                     ACCOUNTANT: Can record payments and view reports | 
                     AUDITOR: Can only view and audit financial records
                 </small>
@@ -46,12 +46,12 @@
             <div class="form-group">
                 <label for="password" class="required">Temporary Password</label>
                 <input type="password" 
-                    id="password" 
-                    th:field="*{password}"
-                    placeholder="Enter temporary password" 
-                    required/>
-                <small style="color: #666; font-size: 12px;">User will be prompted to change password on first login</small>
-</div>
+                       id="password" 
+                       name="password"
+                       placeholder="Enter temporary password" 
+                       required/>
+                <small class="helper-text">User will be prompted to change password on first login</small>
+            </div>
             
             <div class="button-group">
                 <button type="submit">👤 Create Staff User</button>

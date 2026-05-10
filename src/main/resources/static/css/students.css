@@ -1,4 +1,4 @@
-/* Student Pages Shared Styles */
+/* Student Pages Shared Styles - MarvAngel Kids Blue Theme */
 .container {
     max-width: 1200px;
     margin: 30px auto;
@@ -10,16 +10,17 @@
     max-width: 600px;
     margin: 50px auto;
     background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(30, 58, 138, 0.12);
 }
 
 .form-container h2 {
-    color: #2c3e50;
+    color: #1E3A8A;
     margin-bottom: 25px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3B82F6;
+    font-size: 28px;
 }
 
 .form-group {
@@ -30,16 +31,16 @@
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #333;
+    color: #1E3A8A;
     font-size: 14px;
 }
 
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 10px 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
+    padding: 12px 16px;
+    border: 2px solid #DBEAFE;
+    border-radius: 12px;
     font-size: 14px;
     font-family: inherit;
     transition: all 0.3s ease;
@@ -48,16 +49,26 @@
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Helper Text */
+.helper-text,
+.form-group small {
+    display: block;
+    color: #60A5FA;
+    font-size: 12px;
+    margin-top: 6px;
+    font-weight: 500;
 }
 
 button[type="submit"] {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
     color: white;
-    padding: 12px 24px;
+    padding: 14px 24px;
     border: none;
-    border-radius: 8px;
+    border-radius: 40px;
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
@@ -67,43 +78,43 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.25);
 }
 
 .back-link {
     display: inline-block;
     margin-top: 20px;
-    color: #667eea;
+    color: #3B82F6;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .back-link:hover {
-    color: #764ba2;
+    color: #1E3A8A;
     text-decoration: underline;
 }
 
 /* Students by Class Table Styles */
 .header-section {
     background: white;
-    padding: 20px;
-    border-radius: 12px;
+    padding: 25px;
+    border-radius: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.08);
 }
 
 .header-section h2 {
-    color: #2c3e50;
+    color: #1E3A8A;
     margin: 0 0 10px 0;
 }
 
 .class-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
     color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
+    padding: 5px 18px;
+    border-radius: 40px;
     font-size: 14px;
     font-weight: 600;
 }
@@ -112,36 +123,36 @@ button[type="submit"]:hover {
     width: 100%;
     background: white;
     border-collapse: collapse;
-    border-radius: 12px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.08);
 }
 
 .student-table th,
 .student-table td {
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #DBEAFE;
 }
 
 .student-table th {
-    background: #f8f9fa;
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
     font-weight: 600;
-    color: #333;
+    color: white;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .student-table tbody tr:hover {
-    background: #f8f9fa;
+    background: #F0F7FF;
 }
 
 .no-data {
     text-align: center;
     padding: 40px;
     background: white;
-    border-radius: 12px;
+    border-radius: 20px;
     color: #666;
 }
 
@@ -152,14 +163,14 @@ button[type="submit"]:hover {
 .stats {
     margin-top: 20px;
     padding: 12px;
-    background: #e8f4f8;
-    border-radius: 8px;
+    background: #EFF6FF;
+    border-radius: 12px;
     text-align: center;
     font-weight: 500;
 }
 
 .stats strong {
-    color: #667eea;
+    color: #3B82F6;
     font-size: 18px;
 }
 
@@ -168,18 +179,55 @@ button[type="submit"]:hover {
     background: #d1fae5;
     color: #065f46;
     padding: 12px 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-bottom: 20px;
-    border-left: 4px solid #059669;
+    border-left: 4px solid #10b981;
 }
 
 .alert-error {
     background: #fee2e2;
     color: #991b1b;
     padding: 12px 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-bottom: 20px;
     border-left: 4px solid #dc2626;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.edit-btn {
+    background: #3B82F6;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #2563EB;
+    transform: translateY(-1px);
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+    transform: translateY(-1px);
 }
 
 /* Responsive Table */

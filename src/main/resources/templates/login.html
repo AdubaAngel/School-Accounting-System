@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Accounting · Secure Login</title>
+    <title>MarvAngel Kids · School Accounting Login</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        .logo-on-login {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            background: white;
+            border-radius: 20px;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
         <div class="brand-header">
+            <img th:src="@{/images/marvangel-logo.jpeg}" alt="MarvAngel Kids Logo" class="logo-on-login" 
+                 th:onerror="this.src='https://via.placeholder.com/70x70?text=MK'">
             <h1>
-                <span>📚</span> School Accounting
+                <span>📚</span> MarvAngel Kids
             </h1>
-            <p>Smart finance · transparent management</p>
+            <p>School Accounting System</p>
             <div class="school-badge">secure portal</div>
         </div>
 

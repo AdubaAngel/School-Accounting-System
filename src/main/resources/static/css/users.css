@@ -1,4 +1,4 @@
-/* User Management Styles */
+/* User Management Styles - MarvAngel Kids Blue Theme */
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%);
     min-height: 100vh;
     padding: 20px;
 }
@@ -18,8 +18,8 @@ body {
     margin: 50px auto;
     background: white;
     padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(30, 58, 138, 0.12);
     animation: fadeIn 0.5s ease-out;
 }
 
@@ -35,10 +35,10 @@ body {
 }
 
 .form-container h2 {
-    color: #2c3e50;
+    color: #1E3A8A;
     margin-bottom: 30px;
     padding-bottom: 15px;
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 2px solid #3B82F6;
     font-size: 28px;
     display: flex;
     align-items: center;
@@ -59,7 +59,7 @@ body {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #333;
+    color: #1E3A8A;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -75,8 +75,8 @@ body {
 .form-group select {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
+    border: 2px solid #DBEAFE;
+    border-radius: 12px;
     font-size: 15px;
     font-family: inherit;
     transition: all 0.3s ease;
@@ -85,13 +85,24 @@ body {
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .form-group input:hover,
 .form-group select:hover {
-    border-color: #667eea;
+    border-color: #3B82F6;
+}
+
+/* Helper Text */
+.helper-text,
+.role-description,
+.form-group small {
+    display: block;
+    color: #60A5FA;
+    font-size: 12px;
+    margin-top: 6px;
+    font-weight: 500;
 }
 
 /* Button Group */
@@ -103,11 +114,11 @@ body {
 
 button[type="submit"] {
     flex: 1;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
     color: white;
     padding: 14px 24px;
     border: none;
-    border-radius: 8px;
+    border-radius: 40px;
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
@@ -116,11 +127,7 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-button[type="submit"]:active {
-    transform: translateY(0);
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.25);
 }
 
 /* Back Link */
@@ -128,16 +135,16 @@ button[type="submit"]:active {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
-    color: #667eea;
+    color: #3B82F6;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
-    border-radius: 6px;
+    border-radius: 40px;
 }
 
 .back-link:hover {
-    background: #f0f0f0;
-    color: #764ba2;
+    background: #EFF6FF;
+    color: #1E3A8A;
     transform: translateX(-5px);
 }
 
@@ -152,14 +159,14 @@ button[type="submit"]:active {
 .header-section {
     background: white;
     padding: 25px;
-    border-radius: 12px;
+    border-radius: 20px;
     margin-bottom: 25px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.08);
     animation: fadeIn 0.5s ease-out;
 }
 
 .header-section h2 {
-    color: #2c3e50;
+    color: #1E3A8A;
     margin: 0 0 10px 0;
     font-size: 28px;
     display: flex;
@@ -179,10 +186,10 @@ button[type="submit"]:active {
 
 /* Stats Bar */
 .stats-bar {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
     color: white;
-    padding: 15px 20px;
-    border-radius: 10px;
+    padding: 15px 25px;
+    border-radius: 16px;
     margin-bottom: 25px;
     display: flex;
     justify-content: space-between;
@@ -197,23 +204,24 @@ button[type="submit"]:active {
 }
 
 .total-count span {
-    font-size: 28px;
-    font-weight: 700;
-    margin-right: 5px;
+    font-size: 32px;
+    font-weight: 800;
+    margin-right: 8px;
 }
 
 .add-quick-link {
-    background: rgba(255,255,255,0.2);
-    padding: 8px 16px;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 18px;
+    border-radius: 40px;
     text-decoration: none;
     color: white;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s ease;
 }
 
 .add-quick-link:hover {
-    background: rgba(255,255,255,0.3);
+    background: white;
+    color: #1E3A8A;
     transform: translateY(-2px);
 }
 
@@ -222,13 +230,13 @@ button[type="submit"]:active {
     width: 100%;
     background: white;
     border-collapse: collapse;
-    border-radius: 12px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.08);
 }
 
 .user-table thead {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
     color: white;
 }
 
@@ -244,8 +252,8 @@ button[type="submit"]:active {
 .user-table td {
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 1px solid #e0e0e0;
-    color: #333;
+    border-bottom: 1px solid #DBEAFE;
+    color: #1E3A8A;
 }
 
 .user-table tbody tr {
@@ -253,40 +261,53 @@ button[type="submit"]:active {
 }
 
 .user-table tbody tr:hover {
-    background: #f8f9fa;
+    background: #F0F7FF;
     transform: scale(1.01);
 }
 
 /* Role Badges */
 .role-badge {
     display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
+    padding: 4px 14px;
+    border-radius: 30px;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
 .role-badge.accountant {
-    background: #ffc107;
-    color: #333;
+    background: #3B82F6;
+    color: white;
 }
 
 .role-badge.auditor {
-    background: #17a2b8;
-    color: white;
+    background: #DBEAFE;
+    color: #1E3A8A;
 }
 
 .role-badge.owner {
-    background: #dc3545;
+    background: #1E3A8A;
     color: white;
+}
+
+/* Status */
+.status-active {
+    color: #10b981;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.status-inactive {
+    color: #dc3545;
+    font-weight: 600;
+    font-size: 13px;
 }
 
 /* Date Format */
 .date-cell {
     font-family: monospace;
     font-size: 13px;
-    color: #666;
+    color: #60A5FA;
 }
 
 /* Empty State */
@@ -294,8 +315,8 @@ button[type="submit"]:active {
     text-align: center;
     padding: 60px 20px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.08);
 }
 
 .empty-state p {
@@ -308,44 +329,45 @@ button[type="submit"]:active {
     display: inline-block;
     margin-top: 10px;
     padding: 12px 24px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
     color: white;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: 500;
+    border-radius: 40px;
+    font-weight: 600;
     transition: all 0.3s ease;
 }
 
 .empty-state a:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 15px rgba(30, 58, 138, 0.25);
 }
 
 /* Action Buttons */
 .action-buttons {
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
-.edit-btn, .delete-btn, .reset-btn {
-    padding: 5px 12px;
+.edit-btn, .delete-btn, .reset-btn, .deactivate-btn, .reactivate-btn {
+    padding: 6px 14px;
     border: none;
-    border-radius: 6px;
+    border-radius: 30px;
     cursor: pointer;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
     display: inline-block;
 }
 
 .edit-btn {
-    background: #28a745;
+    background: #3B82F6;
     color: white;
 }
 
 .edit-btn:hover {
-    background: #218838;
+    background: #2563EB;
     transform: translateY(-1px);
 }
 
@@ -360,12 +382,32 @@ button[type="submit"]:active {
 }
 
 .reset-btn {
-    background: #ffc107;
-    color: #333;
+    background: #10b981;
+    color: white;
 }
 
 .reset-btn:hover {
-    background: #ffb300;
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+.deactivate-btn {
+    background: #f97316;
+    color: white;
+}
+
+.deactivate-btn:hover {
+    background: #ea580c;
+    transform: translateY(-1px);
+}
+
+.reactivate-btn {
+    background: #10b981;
+    color: white;
+}
+
+.reactivate-btn:hover {
+    background: #059669;
     transform: translateY(-1px);
 }
 
@@ -416,10 +458,6 @@ button[type="submit"]:active {
         flex-direction: column;
         gap: 5px;
     }
-    
-    .edit-btn, .delete-btn, .reset-btn {
-        text-align: center;
-    }
 }
 
 /* Print Styles */
@@ -433,8 +471,8 @@ button[type="submit"]:active {
     }
     
     .user-table thead {
-        background: #f0f0f0;
-        color: black;
+        background: #DBEAFE;
+        color: #1E3A8A;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
@@ -444,7 +482,7 @@ button[type="submit"]:active {
 .alert-message {
     margin-top: 20px;
     padding: 12px;
-    border-radius: 8px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -463,13 +501,13 @@ button[type="submit"]:active {
 }
 
 .alert-message.success {
-    background: #d4edda;
-    border-left: 4px solid #28a745;
-    color: #155724;
+    background: #d1fae5;
+    border-left: 4px solid #10b981;
+    color: #065f46;
 }
 
 .alert-message.error {
-    background: #f8d7da;
-    border-left: 4px solid #dc3545;
-    color: #721c24;
+    background: #fee2e2;
+    border-left: 4px solid #dc2626;
+    color: #991b1b;
 }

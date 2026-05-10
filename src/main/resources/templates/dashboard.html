@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - School Accounting System</title>
+    <title>Dashboard - MarvAngel Kids School Accounting</title>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- Header Section -->
+        <!-- Header Section with Logo -->
         <div class="header">
-            <h2>🏫 School Accounting System</h2>
+            <div class="logo-area">
+            <img th:src="@{/images/marvangel-logo.jpeg}" alt="MarvAngel Kids Logo" class="logo-img" 
+                th:onerror="this.src='https://via.placeholder.com/45x45?text=MK'">
+            <h2>MarvAngel Kids School</h2>
+            </div>
             <div class="user-info">
                 <span>Logged in as: <strong th:text="${#authentication.name}">User</strong></span>
             </div>
@@ -22,7 +26,7 @@
             <!-- Welcome Card -->
             <div class="welcome-card">
                 <h3>Welcome back! 👋</h3>
-                <p>You have successfully logged into the School Accounting System. Use the navigation below to manage students, parents, and financial records.</p>
+                <p>You have successfully logged into the MarvAngel Kids School Accounting System. Use the navigation below to manage students, parents, and financial records.</p>
             </div>
 
             <!-- User Management Section (Owner Only) -->
