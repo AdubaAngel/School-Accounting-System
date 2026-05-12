@@ -2,11 +2,21 @@
 
 A production web application for private school fee management, student records, and financial reporting – built with Spring Boot and PostgreSQL.
 
-## Demo Video
+📘 [Visit MarvAngel Kids on Facebook](https://www.facebook.com/marvangelkids/)
 
-[![Watch the Demo Video](https://img.youtube.com/vi/-2SyaHPR0ss/0.jpg)](https://youtu.be/-2SyaHPR0ss)
+---
 
-Click the image above to watch the system demo.
+## Demo Videos
+
+Watch these short demos to see the system in action:
+
+| Topic | Watch on YouTube | Description |
+| :---- | :---- | :---- |
+| **Staff Management** | [▶️ Watch Demo](https://youtu.be/cP2k9BZBy-0) | Adding new staff users (Accountant & Auditor roles) |
+| **Parent Management** | [▶️ Watch Demo](https://youtu.be/PsC_FMVjUPU) | Adding and managing parents/guardians |
+| **Student Management** | [▶️ Watch Demo](https://youtu.be/doJVGQbJoTM) | Adding students, assigning classes, and linking to parents |
+
+---
 
 ## Screenshots
 
@@ -19,34 +29,32 @@ Click the image above to watch the system demo.
 ![Accountant Dashboard](/images/accounting-dashboard.png)
 
 ### Auditor Dashboard
-
 ![Auditor Dashboard](/images/auditor-dashboard.png)
+
+---
 
 ## Overview
 
-This system manages student enrollment, fee collection, payment tracking, and financial reporting for **MarvAngel Kids School**.
-
-📘 [Visit MarvAngel Kids on Facebook](https://www.facebook.com/marvangelkids/)
+This system manages student enrollment, fee collection, payment tracking, and financial reporting for **MarvAngel Kids School**. It serves three user roles: **Owner**, **Accountant**, and **Auditor** – each with specific permissions.
 
 Built based on real requirements gathered directly from the school owner.
+
+---
 
 ## Features
 
 ### Student Management
-
 - Add students and assign to classes (Preschool 1–2, KG 1–2, Grades 1–6)
 - Link multiple students to a parent/guardian
 - View students filtered by class level
 - Edit and delete student records
 
 ### Parent Management
-
 - Add parent/guardian contact information (name, email, phone)
 - Link multiple students to the same parent
 - Edit and delete parent records (with student safety check)
 
 ### User Management (Owner Only)
-
 - Add new staff users (ACCOUNTANT or AUDITOR roles)
 - View all staff users
 - Edit user details (name, role)
@@ -54,20 +62,17 @@ Built based on real requirements gathered directly from the school owner.
 - Owner account protection (cannot be deactivated or deleted)
 
 ### Payment Processing (Coming Soon)
-
 - Record bank transfer payments (3 school bank accounts)
 - Support partial payments (installments)
 - Automatic balance calculation
 - Overpayments become credits applied to future terms
 
 ### Receipts (Coming Soon)
-
 - PDF receipts generated automatically when payment completes
 - Receipts emailed to parents
 - Owner's digital signature on every receipt
 
 ### Security Features
-
 - BCrypt password hashing
 - Role-based access control (OWNER, ACCOUNTANT, AUDITOR)
 - Method-level security with `@PreAuthorize`
@@ -75,30 +80,35 @@ Built based on real requirements gathered directly from the school owner.
 - CSRF protection enabled
 - HTTP-only cookies
 
+---
+
 ## Technology Stack
 
-| Layer      | Technology                            |
-|------------|-----------------------------------|
-| Language   | Java 17                           |
-| Framework  | Spring Boot 3                     |
-| Security   | Spring Security (role-based)      |
-| Database   | PostgreSQL                        |
-| ORM        | Spring Data JPA / Hibernate       |
-| Templates  | Thymeleaf                         |
-| Build Tool | Maven                             |
+| Layer | Technology |
+| :----- | :---------- |
+| Language | Java 17 |
+| Framework | Spring Boot 3 |
+| Security | Spring Security (role-based) |
+| Database | PostgreSQL |
+| ORM | Spring Data JPA / Hibernate |
+| Templates | Thymeleaf |
+| Build Tool | Maven |
+
+---
 
 ## User Roles
 
-| Role          | Permissions                                                                 |
-|--------------|-----------------------------------------------------------------------------|
-| **Owner**      | Full access – manage users, fee structures, students, parents, view all data |
-| **Accountant** | Record payments, view reports, view parents and students                     |
-| **Auditor**    | Read-only access to reports, parents, and students                            |
+| Role | Permissions |
+| :---- | :----------- |
+| **Owner** | Full access – manage users, fee structures, students, parents, view all data |
+| **Accountant** | Record payments, view reports, view parents and students |
+| **Auditor** | Read-only access to reports, parents, and students |
+
+---
 
 ## Setup Instructions
 
 ### Prerequisites
-
 - Java 17
 - PostgreSQL (port 3007)
 - Maven
@@ -126,18 +136,17 @@ server.port=8081
 ./mvnw spring-boot:run
 ```
 
-Access the application at: [http://localhost:8081](http://localhost:8081)
+Access the application at: http://localhost:8081
 
 ### Default Test Credentials
 
-| Username     | Password      | Role       |
-|--------------|---------------|------------|
-| owner1       | MarvAngel540  | OWNER      |
-| accountant1  | MarvAngel540  | ACCOUNTANT |
-| auditor1     | MarvAngel540  | AUDITOR    |
+| Username | Password | Role |
+| :-------- | :-------- | :---- |
+| owner1 | MarvAngel540 | OWNER |
+| accountant1 | MarvAngel540 | ACCOUNTANT |
+| auditor1 | MarvAngel540 | AUDITOR |
 
-## Key Business Rules
-
+### Key Business Rules
 - Fees are fixed per class level – same amount for all students in that class
 - Three terms per academic year
 - No cash payments – bank transfer only
@@ -146,10 +155,9 @@ Access the application at: [http://localhost:8081](http://localhost:8081)
 - Daily closure locks all transactions for that day
 - Every edit is tracked in audit logs
 
-## Project Status
+### Project Status
 
-### Completed
-
+#### Completed
 - Requirements gathering with school owner
 - Database schema design and implementation
 - User authentication with BCrypt
@@ -160,18 +168,19 @@ Access the application at: [http://localhost:8081](http://localhost:8081)
 - Dashboard with role-based menu
 - Fee Structure entity and repository
 
-### In Progress
-
+#### In Progress
 - Fee Structure web interface (add, edit, list)
 - Payment Recording
 - Receipt Generation (PDF + Email)
 - Daily Closure
 - Audit Logging
 
-## License
-
+### License
 Built for MarvAngel Kids School production use.
 
-## Author
-
+### Author
 Custom solution for private school accounting system.
+
+📘 Visit MarvAngel Kids on Facebook
+
+
