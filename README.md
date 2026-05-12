@@ -181,6 +181,4 @@ Built for MarvAngel Kids School production use.
 ### Author
 Custom solution for private school accounting system.
 
-📘 Visit MarvAngel Kids on Facebook
-
-
+📘 [Visit MarvAngel Kids on Facebook](https://www.facebook.com/marvangelkids/)
