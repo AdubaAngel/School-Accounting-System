@@ -9,5 +9,10 @@ import com.school.accounting.model.SchoolUser;
 
 @Repository
 public interface SchoolUserRepository extends JpaRepository<SchoolUser, Long> {
+    
     Optional<SchoolUser> findByUsername(String username);
+    
+    Optional<SchoolUser> findByEmail(String email);
+    
+    long countByEmailStartingWith(String prefix);
 }

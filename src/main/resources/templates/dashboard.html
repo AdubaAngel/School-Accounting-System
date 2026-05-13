@@ -9,16 +9,24 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- Header Section with Logo -->
+        <!-- Header Section -->
         <div class="header">
             <div class="logo-area">
-            <img th:src="@{/images/marvangel-logo.jpeg}" alt="MarvAngel Kids Logo" class="logo-img" 
-                th:onerror="this.src='https://via.placeholder.com/45x45?text=MK'">
-            <h2>MarvAngel Kids School</h2>
+                <img th:src="@{/images/marvangel-logo.jpeg}" alt="MarvAngel Kids Logo" class="logo-img">
+                <h2>🏫 MarvAngel Kids School</h2>
             </div>
             <div class="user-info">
-                <span>Logged in as: <strong th:text="${#authentication.name}">User</strong></span>
+                <span>Logged in as: <strong th:text="${userName}">User</strong></span>
+                <a href="/change-password" class="change-password-link">🔑 Change Password</a>
             </div>
+        </div>
+
+        <!-- Password Expiry Warning -->
+        <div th:if="${needsPasswordChange}" class="alert-warning">
+            ⚠️ <strong>Password Expired!</strong> Your password has expired. Please <a href="/change-password">change your password</a> immediately.
+        </div>
+        <div th:unless="${needsPasswordChange}" class="password-timer" th:if="${daysLeft != null}">
+            🔒 Your password expires in <strong th:text="${daysLeft}"></strong> day(s)
         </div>
 
         <!-- Main Content -->
@@ -30,9 +38,11 @@
             </div>
 
             <!-- User Management Section (Owner Only) -->
-            <div class="nav-section" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
-                <h3>👥 User Management</h3>
-                <div class="nav-links">
+            <div class="section" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                <div class="section-header">
+                    <h3>👥 User Management</h3>
+                </div>
+                <div class="section-content">
                     <div class="nav-item">
                         <a href="/users/add">➕ Add New Staff User</a>
                         <span class="badge owner">Owner only</span>
@@ -45,9 +55,11 @@
             </div>
 
             <!-- Parent Management Section -->
-            <div class="nav-section">
-                <h3>👨‍👩‍👧 Parent Management</h3>
-                <div class="nav-links">
+            <div class="section">
+                <div class="section-header">
+                    <h3>👨‍👩‍👧 Parent Management</h3>
+                </div>
+                <div class="section-content">
                     <div class="nav-item" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
                         <a href="/parents/add">➕ Add New Parent</a>
                         <span class="badge owner">Owner only</span>
@@ -60,16 +72,20 @@
             </div>
 
             <!-- Student Management Section -->
-            <div class="nav-section">
-                <h3>📚 Student Management</h3>
-                <div class="nav-links">
+            <div class="section">
+                <div class="section-header">
+                    <h3>📚 Student Management</h3>
+                </div>
+                <div class="section-content">
                     <div class="nav-item" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
                         <a href="/students/add">➕ Add New Student</a>
                         <span class="badge owner">Owner only</span>
                     </div>
                 </div>
                 
-                <h4>📖 View Students by Class:</h4>
+                <div class="section-subheader">
+                    <h4>📖 View Students by Class:</h4>
+                </div>
                 <div class="grade-grid">
                     <div class="grade-item">
                         <a href="/students/class/PRESCHOOL">🎨 Preschool</a>
@@ -107,9 +123,11 @@
             </div>
 
             <!-- Fee Structure Section (Owner Only) -->
-            <div class="nav-section" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
-                <h3>💰 Fee Management</h3>
-                <div class="nav-links">
+            <div class="section" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
+                <div class="section-header">
+                    <h3>💰 Fee Management</h3>
+                </div>
+                <div class="section-content">
                     <div class="nav-item">
                         <a href="/fee-structures">📋 Fee Structures</a>
                         <span class="badge owner">Owner only</span>
@@ -118,19 +136,19 @@
             </div>
 
             <!-- Financial Management Section -->
-            <div class="nav-section">
-                <h3>💰 Financial Management</h3>
-                <div class="nav-links">
+            <div class="section">
+                <div class="section-header">
+                    <h3>💰 Financial Management</h3>
+                </div>
+                <div class="section-content">
                     <div class="nav-item" th:if="${#authorization.expression('hasAnyRole(''OWNER'', ''ACCOUNTANT'')')}">
                         <a href="/payments/record">💰 Record Payment</a>
                         <span class="badge accountant">Owner + Accountant</span>
                     </div>
-                    
                     <div class="nav-item">
                         <a href="/reports">📊 Financial Reports</a>
                         <span class="badge all">All roles</span>
                     </div>
-                    
                     <div class="nav-item" th:if="${#authorization.expression('hasRole(''OWNER'')')}">
                         <a href="/audit-logs">📜 Audit Logs</a>
                         <span class="badge owner">Owner only</span>
@@ -150,8 +168,10 @@
             </div>
 
             <!-- Quick Stats Section -->
-            <div class="nav-section">
-                <h3>📈 Quick Stats</h3>
+            <div class="section">
+                <div class="section-header">
+                    <h3>📈 Quick Stats</h3>
+                </div>
                 <div class="grade-grid">
                     <div class="grade-item">
                         <span>📊 Total Students</span>

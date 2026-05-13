@@ -24,7 +24,7 @@
         <table class="user-table" th:unless="${users.empty}">
             <thead>
                 <tr>
-                    <th>Username</th>
+                    <th>Email</th>
                     <th>Full Name</th>
                     <th>Role</th>
                     <th>Status</th>
@@ -34,7 +34,7 @@
             </thead>
             <tbody>
                 <tr th:each="user : ${users}">
-                    <td th:text="${user.username}">--</td>
+                    <td th:text="${user.email}">--</td>
                     <td th:text="${user.fullName}">--</td>
                     <td>
                         <span class="role-badge" 
@@ -48,17 +48,19 @@
                     <td class="date-cell" th:text="${user.createdAt}">--</td>
                     <td>
                         <div class="action-buttons">
+                            <a th:if="${user.role != 'OWNER'}" 
+                               th:href="@{/users/edit/{id}(id=${user.id})}" 
+                               class="edit-btn">Edit</a>
+                            <a th:if="${user.role != 'OWNER'}" 
+                               th:href="@{/users/reset-password/{id}(id=${user.id})}" 
+                               class="reset-btn">Reset</a>
                             <a th:if="${user.isActive and user.role != 'OWNER'}" 
                                th:href="@{/users/deactivate/{id}(id=${user.id})}" 
                                class="deactivate-btn" 
-                               onclick="return confirm('Deactivate this user? They will not be able to log in.')">Deactivate</a>
-                            
+                               onclick="return confirm('Deactivate this user?')">Deactivate</a>
                             <a th:if="${!user.isActive}" 
                                th:href="@{/users/reactivate/{id}(id=${user.id})}" 
-                               class="reactivate-btn" 
-                               onclick="return confirm('Reactivate this user? They will be able to log in again.')">Reactivate</a>
-                            
-                            <a th:href="@{/users/edit/{id}(id=${user.id})}" class="edit-btn">Edit</a>
+                               class="reactivate-btn">Reactivate</a>
                         </div>
                     </td>
                 </tr>

@@ -229,6 +229,22 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
+.reset-btn {
+    background: #fef3c7;
+    color: #b45309;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+.reset-btn:hover {
+    background: #fde68a;
+}
+
 .form-group {
     margin-bottom: 20px;
 }

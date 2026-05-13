@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MarvAngel Kids · School Accounting Login</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <style>
-        .logo-on-login {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            background: white;
-            border-radius: 20px;
-            padding: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
     <div class="login-container">
         <div class="brand-header">
             <img th:src="@{/images/marvangel-logo.jpeg}" alt="MarvAngel Kids Logo" class="logo-on-login" 
-                 th:onerror="this.src='https://via.placeholder.com/70x70?text=MK'">
-            <h1>
-                <span>📚</span> MarvAngel Kids
-            </h1>
+                 th:onerror="this.src='https://via.placeholder.com/80x80?text=MK'">
+            <h1>📚 MarvAngel Kids</h1>
             <p>School Accounting System</p>
             <div class="school-badge">secure portal</div>
         </div>
@@ -34,13 +19,13 @@
         <div class="form-wrapper">
             <form th:action="@{/login}" method="post" class="login-form">
                 <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" 
+                    <label for="username">Email Address</label>
+                    <input type="email" 
                            id="username" 
                            name="username" 
                            class="input-field" 
-                           placeholder="staff ID or email" 
-                           autocomplete="username"
+                           placeholder="Enter your email" 
+                           autocomplete="email"
                            required>
                 </div>
 
@@ -50,7 +35,7 @@
                            id="password" 
                            name="password" 
                            class="input-field" 
-                           placeholder="••••••••" 
+                           placeholder="Enter your password" 
                            autocomplete="current-password"
                            required>
                 </div>
@@ -66,7 +51,7 @@
 
             <div th:if="${param.error}" class="alert-message error" role="alert">
                 <span class="alert-icon">⚠️</span>
-                <span>Invalid username or password</span>
+                <span>Invalid email or password</span>
             </div>
             
             <div th:if="${param.logout}" class="alert-message success" role="alert">

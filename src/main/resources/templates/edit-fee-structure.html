@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Fee Structure - MarvAngel Kids School Accounting</title>
+    <link rel="stylesheet" th:href="@{/css/fees.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <div class="header">
+            <div class="logo-area">
+                <img th:src="@{/images/marvangel-logo.jpeg}" alt="MarvAngel Kids Logo" class="logo-img">
+                <h2>🏫 MarvAngel Kids School</h2>
+            </div>
+            <div class="user-info">
+                <span>Logged in as: <strong th:text="${#authentication.name}">User</strong></span>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="form-container">
+            <h2>Edit Fee Structure</h2>
+            
+            <form th:action="@{/fee-structures/update/{id}(id=${feeStructure.id})}" 
+                  th:object="${feeStructure}" 
+                  method="post">
+                
+                <!-- Class Level Dropdown (Pre-filled) -->
+                <div class="form-group">
+                    <label for="classLevel" class="required">Class Level</label>
+                    <select id="classLevel" th:field="*{classLevel}" required>
+                        <option value="">-- Select Class Level --</option>
+                        <option th:each="level : ${classLevels}" 
+                                th:value="${level}" 
+                                th:text="${level}"
+                                th:selected="${feeStructure.classLevel == level}">
+                        </option>
+                    </select>
+                    <span class="helper-text">Select the grade level for this fee structure</span>
+                </div>
+                
+                <!-- Term Dropdown (Pre-filled) -->
+                <div class="form-group">
+                    <label for="term" class="required">Term</label>
+                    <select id="term" th:field="*{term}" required>
+                        <option value="">-- Select Term --</option>
+                        <option th:each="term : ${terms}" 
+                                th:value="${term}" 
+                                th:text="${term}"
+                                th:selected="${feeStructure.term == term}">
+                        </option>
+                    </select>
+                    <span class="helper-text">Select the academic term</span>
+                </div>
+                
+                <!-- Academic Year Input (Pre-filled) -->
+                <div class="form-group">
+                    <label for="academicYear" class="required">Academic Year</label>
+                    <input type="text" 
+                           id="academicYear" 
+                           th:field="*{academicYear}" 
+                           placeholder="e.g., 2024-2025" 
+                           required/>
+                    <span class="helper-text">Format: YYYY-YYYY (e.g., 2024-2025)</span>
+                </div>
+                
+                <!-- Amount Input (Pre-filled) -->
+                <div class="form-group">
+                    <label for="amount" class="required">Amount (₱)</label>
+                    <input type="number" 
+                           id="amount" 
+                           th:field="*{amount}" 
+                           step="0.01" 
+                           placeholder="0.00" 
+                           required/>
+                    <span class="helper-text">Enter the fee amount in Philippine Pesos (₱)</span>
+                </div>
+                
+                <div class="button-group">
+                    <button type="submit">💾 Update Fee Structure</button>
+                    <a href="/fee-structures" class="cancel-btn">Cancel</a>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Back to Fee Structures Link -->
+        <a href="/fee-structures" class="back-link">← Back to Fee Structures</a>
+    </div>
+</body>
+</html>

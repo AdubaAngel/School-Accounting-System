@@ -23,45 +23,29 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         System.out.println("=== LOGIN ATTEMPT ===");
-        System.out.println("Searching for username: '" + username + "'");
+        System.out.println("Searching for email: '" + email + "'");
         
-        SchoolUser user = userRepository.findByUsername(username)
-            .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+        SchoolUser user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
 
-        System.out.println("User found: " + user.getUsername());
+        System.out.println("User found: " + user.getFullName());
         System.out.println("Is active: " + user.getIsActive());
         System.out.println("Role: " + user.getRole());
 
         if (!user.getIsActive()) {
             System.out.println("User is INACTIVE - denying login");
-            throw new UsernameNotFoundException("User account is deactivated: " + username);
-        }
-
-        // Check if password needs to be changed (5-day urgency)
-        if (user.getPasswordChangedAt() != null) {
-            long daysSince = ChronoUnit.DAYS.between(user.getPasswordChangedAt(), LocalDateTime.now());
-            System.out.println("Password age: " + daysSince + " days");
-            
-            if (daysSince >= 5) {
-                System.out.println("Password is " + daysSince + " days old - forcing password change");
-                // Instead of throwing exception, you can add a flag to redirect
-                // For now, just log it. Later you can implement a custom UserDetails with "needsPasswordChange" flag
-            }
-        } else {
-            System.out.println("No password_changed_at date - consider setting it");
+            throw new UsernameNotFoundException("User account is deactivated: " + email);
         }
 
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole());
         List<SimpleGrantedAuthority> authorities = List.of(authority);
 
-        System.out.println("Login successful for: " + username);
-        System.out.println("Returning UserDetails for: " + username);
-        System.out.println("Password hash length: " + user.getPassword().length());
+        System.out.println("Login successful for: " + user.getFullName());
         
         return new org.springframework.security.core.userdetails.User(
-            user.getUsername(),
+            user.getEmail(),
             user.getPassword(),
             authorities
         );
