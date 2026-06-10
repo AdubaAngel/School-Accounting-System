@@ -199,13 +199,13 @@ body::after {
 
 .alert-message.error {
     background: #fee2e2;
-    border-left: 4px solid #dc2626;
+    border-left: none;
     color: #991b1b;
 }
 
 .alert-message.success {
     background: #d1fae5;
-    border-left: 4px solid #10b981;
+    border-left: none;
     color: #065f46;
 }
 

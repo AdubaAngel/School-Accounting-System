@@ -86,7 +86,7 @@ body {
     text-align: center;
     font-size: 14px;
     color: #1E40AF;
-    border-left: 4px solid #3B82F6;
+    border-left: none;
 }
 
 .alert-warning {
@@ -95,7 +95,7 @@ body {
     padding: 12px 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    border-left: 4px solid #DC2626;
+    border-left: none;
 }
 
 .alert-warning a {
@@ -253,7 +253,7 @@ body {
     padding: 15px 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    border-left: 4px solid #3B82F6;
+    border-left: none;
 }
 
 .role-info p {
@@ -262,11 +262,11 @@ body {
 }
 
 .role-info.accountant {
-    border-left-color: #F59E0B;
+    border-left: none;-color: #F59E0B;
 }
 
 .role-info.user {
-    border-left-color: #10B981;
+    border-left: none;-color: #10B981;
 }
 
 /* Logout Form */

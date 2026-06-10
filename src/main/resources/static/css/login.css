@@ -165,13 +165,13 @@ body {
 .alert-message.error {
     background: #FEE2E2;
     color: #991B1B;
-    border-left: 4px solid #DC2626;
+    border-left: none;
 }
 
 .alert-message.success {
     background: #D1FAE5;
     color: #065F46;
-    border-left: 4px solid #10B981;
+    border-left: none;
 }
 
 .alert-icon {
